@@ -1,0 +1,247 @@
+﻿<Window x:Class="Athletics.Views.CompetitionDisciplineResultsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:Athletics.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" 
+        d:DesignHeight="500" d:DesignWidth="800"
+        MinHeight="500" MinWidth="1500"
+        Title="Competition discipline results">
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid Name="ShowList" AutoGenerateColumns="False" CanUserAddRows = "False">
+            
+            <DataGrid.Columns>
+                
+                <DataGridTemplateColumn Width="*" Header="Surname" SortMemberPath="Contender.Athlete.Person.Surname">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+                            
+                            <TextBox Text="{Binding Contender.Athlete.Person.Surname}"/>
+                        
+                        </DataTemplate>
+                    
+                    </DataGridTemplateColumn.CellTemplate>
+                
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="*" Header="Name" SortMemberPath="Contender.Athlete.Person.Name">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+                            
+                            <TextBox Text="{Binding Contender.Athlete.Person.Name}"/>
+                       
+                        </DataTemplate>
+                  
+                    </DataGridTemplateColumn.CellTemplate>
+               
+                </DataGridTemplateColumn>
+               
+                <DataGridTemplateColumn Width="*" Header="Birth date" SortMemberPath="Contender.Athlete.Person.FormattedBirthDate">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                       
+                        <DataTemplate>
+                           
+                            <TextBox Text="{Binding Contender.Athlete.Person.FormattedBirthDate, Mode=OneWay}"/>
+                       
+                        </DataTemplate>
+                   
+                    </DataGridTemplateColumn.CellTemplate>
+               
+                </DataGridTemplateColumn>
+               
+                <DataGridTemplateColumn Width="*" Header="Country" SortMemberPath="Contender.Athlete.Person.Country">
+                   
+                    <DataGridTemplateColumn.CellTemplate>
+                       
+                        <DataTemplate>
+                          
+                            <TextBox Text="{Binding Contender.Athlete.Person.Country}"/>
+                       
+                        </DataTemplate>
+                    
+                    </DataGridTemplateColumn.CellTemplate>
+               
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="*" Header="Score" SortMemberPath="ContenderResult.Score">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                       
+                        <DataTemplate>
+                           
+                            <TextBox Text="{Binding ContenderResult.Score}"/>
+                       
+                        </DataTemplate>
+                   
+                    </DataGridTemplateColumn.CellTemplate>
+               
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="*" Header="Team" SortMemberPath="Contender.Team.Name">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                       
+                        <DataTemplate>
+                           
+                            <TextBox Text="{Binding Contender.Team.Name}"/>
+                       
+                        </DataTemplate>
+                   
+                    </DataGridTemplateColumn.CellTemplate>
+                
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="*" Header="Coach" SortMemberPath="Contender.Team.Coach.Person.Surname">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+                            
+                            <TextBox Text="{Binding Contender.Team.Coach.Person.Surname}"/>
+                        
+                        </DataTemplate>
+                   
+                    </DataGridTemplateColumn.CellTemplate>
+                
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="">
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <Button Content="Save" Click="Save_Button_Click"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="">
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <Button Content="Delete" Click="Delete_Button_Click"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        
+        </DataGrid>
+       
+        <Grid Grid.Row="1" Background="GhostWhite">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="75" Height="50" 
+                    Content="Add" FontSize="20" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Click="Add_Button_Click"/>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+
+                    <TextBox x:Name="contender_name__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="name"/>
+
+                    <TextBox x:Name="contender_surname__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="surname"/>
+
+                    <TextBox x:Name="contender_middlename__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="middlename"/>
+                    
+                    <TextBox x:Name="contender_country__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="country"/>
+
+                    <TextBox x:Name="contender_sex__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="sex"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        
+                        <TextBlock Text="Birthdate" Height="20" Width="60" FontSize="12" VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="birthdate_day__txt_box" Width="40" materialDesign:HintAssist.Hint="day"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="birthdate_month__txt_box" Width="50" materialDesign:HintAssist.Hint="month"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="birthdate_year__txt_box" Width="55" materialDesign:HintAssist.Hint="year"
+                             Height="25" VerticalAlignment="Center"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="35, 0">
+                        
+                        
+                        
+                        <TextBox x:Name="contender_team__txt_box" Width="120"
+                              Height="25" VerticalAlignment="Center" Margin="5, 0"
+                              Foreground="Black" Background="Transparent"
+                              materialDesign:HintAssist.Hint="team"/>
+
+                        <ComboBox x:Name="contender_coach__combo_box" Width="120"
+                              Height="25" VerticalAlignment="Center" Margin="5 , 0"
+                              Foreground="Black" Background="Transparent"
+                              materialDesign:HintAssist.Hint="coach"/>
+                        
+                        <TextBox x:Name="contender_score__txt_box" Width="120"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="score"/>
+                        
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+        
+    </Grid>
+    
+</Window>

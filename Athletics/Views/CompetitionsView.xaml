@@ -1,0 +1,264 @@
+﻿<Window x:Class="Athletics.Views.CompetitionsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Athletics.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        d:DesignHeight="500" d:DesignWidth="900"
+        MinHeight="500" MinWidth="1500"
+        Title="Competitions">
+
+    <Grid Grid.Row="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" Name="ShowList" AutoGenerateColumns="False" CanUserAddRows = "False">
+            
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn x:Name="status_column" Width="3*" Header="Status" SortMemberPath="Status">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <ComboBox Loaded="competition_status__data_Loaded" x:Name="competition_status__data" Text="{Binding Status}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn x:Name="name_column" Width="3*" Header="Name" SortMemberPath="Name">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+
+                            <TextBox x:Name="competition_name__data" Text="{Binding Name}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="3*" Header="Location" SortMemberPath="Location">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+
+                            <TextBox x:Name="competition_location__data" Text="{Binding Location}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="3*" Header="Country" SortMemberPath="Country">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+
+                            <TextBox x:Name="competition_country__data" Text="{Binding Country}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="3*" Header="Beggining date" SortMemberPath="BegginingDate">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+
+                            <TextBox x:Name="competition_beggining__data" Text="{Binding BegginingDate}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="3*" Header="Ending date" SortMemberPath="EndingDate">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+
+                            <TextBox x:Name="competition_ending__data" Text="{Binding EndingDate}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="3*" Header="Protocol">
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        
+                        <DataTemplate>
+                            
+                            <Button Content="Protocol" Click="See_Protocol_Button_Click"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="2*" Header="">
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <Button Content="Save" Click="Save_Button_Click"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="2*" Header="">
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <Button Content="Delete" Click="Delete_Button_Click"
+                                    Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        
+        <Grid Grid.Row="1" Background="GhostWhite">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="75" Height="50" 
+                    Content="Add" FontSize="20" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Click="Add_Button_Click"/>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+
+                    <ComboBox x:Name="status__combo_box" Width="150"
+                              Height="25" VerticalAlignment="Center" Margin="5, 0"
+                              Foreground="Black" Background="Transparent"
+                              materialDesign:HintAssist.Hint="status"/>
+
+                    <TextBox x:Name="competition_name__txt_box" Width="250"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="name"/>
+
+                    <TextBox x:Name="competition_country__txt_box" Width="150"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="country"/>
+                    
+                    <TextBox x:Name="competition_location__txt_box" Width="150"
+                             Height="25" VerticalAlignment="Center" Margin="5, 0"
+                             materialDesign:HintAssist.Hint="location"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        
+                        <TextBlock Text="Beggining" Height="20" Width="60" FontSize="12" VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="beggining_day__txt_box" Width="40" materialDesign:HintAssist.Hint="day"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="beggining_month__txt_box" Width="50" materialDesign:HintAssist.Hint="month"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="beggining_year__txt_box" Width="55" materialDesign:HintAssist.Hint="year"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="beggining_hour__txt_box" Width="55" materialDesign:HintAssist.Hint="hour"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="beggining_minute__txt_box" Width="55" materialDesign:HintAssist.Hint="minute"
+                             Height="25" VerticalAlignment="Center"/>
+                    
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="25, 0">
+                        
+                        <TextBlock Text="Ending" Height="20" Width="60" FontSize="12" VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="ending_day__txt_box" Width="40" materialDesign:HintAssist.Hint="day"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="ending_month__txt_box" Width="50" materialDesign:HintAssist.Hint="month"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="ending_year__txt_box" Width="55" materialDesign:HintAssist.Hint="year"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="ending_hour__txt_box" Width="55" materialDesign:HintAssist.Hint="hour"
+                             Height="25" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="/" Height="25" Width="10" FontSize="18"/>
+
+                        <TextBox x:Name="ending_minute__txt_box" Width="55" materialDesign:HintAssist.Hint="minute"
+                             Height="25" VerticalAlignment="Center"/>
+                    
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+        
+    </Grid>
+    
+</Window>
